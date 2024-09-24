@@ -14,39 +14,57 @@ This project demonstrates a simple web interface built with Flask to control a s
 2. **Metro Mini**: The Metro Mini receives commands via serial and controls the servo accordingly.
 3. **Real-Time Feedback**: Using Socket.IO, the front-end is updated in real-time, showing the current state of the servo.
 
- 
-RPI RUNNING SERVER 
+## Wiring Diagram
+
+```bash
+Computer
   │
   │ USB Cable
   │
   ▼
 Adafruit Metro Mini
-  ┌──────────────────────────┐
-  │   ┌─────────────┐         │
-  │   │ PWM Pin 9   │─────────┼──> Signal to Servo Motor
-  │   └─────────────┘         │
-  │                           │
-  │   ┌─────────────┐         │
-  │   │    GND      │─────────┼──> Ground to Servo Motor
-  │   └─────────────┘         │
-  │                           │
-  │   ┌─────────────┐         │
-  │   │   5V (USB)  │─────────┼──> Power (from USB)
-  │   └─────────────┘         │
-  └──────────────────────────┘
+  ┌────────────────────────────┐
+  │                            │
+  │   ┌──────────────┐          │
+  │   │  PWM Pin 8   │──────────┼──> Signal to Servo Motor
+  │   └──────────────┘          │
+  │                            │
+  │   ┌──────────────┐          │
+  │   │    GND       │──────────┼──> Ground to Servo Motor
+  │   └──────────────┘          │
+  │                            │
+  │   ┌──────────────┐          │
+  │   │   5V (USB)   │──────────┼──> Power (from USB)
+  │   └──────────────┘          │
+  │                            │
+  │   ┌──────────────┐          │
+  │   │  Pin 9       │──────────┼──> Button (Input)
+  │   └──────────────┘          │
+  │                            │
+  └────────────────────────────┘
 
 Servo Motor
   ┌──────────────────────────┐
   │  │                       │
-  │  │ Signal (from Metro Mini) ─────> Control the Servo
+  │  │ Signal (from Metro Mini Pin 8) ─────> Control the Servo
   │  │                       │
   │  │ Power (from external 5V supply) ─> Power for Servo
   │  │                       │
   │  │ Ground (common with Metro Mini) ─> Connect to GND
   └──────────────────────────┘
 
+Push Button
+  ┌──────────────────────────┐
+  │  │                       │
+  │  │ One leg to Metro Mini Pin 9 (Input) ─> Read button state
+  │  │                       │
+  │  │ Other leg to GND ────────────────────> Common ground
+  └──────────────────────────┘
 
-### Tech Stack
+
+```
+
+## Tech Stack
 - **Flask** - Python web framework
 - **Socket.IO** - Real-time communication between the server and the client
 - **HTML/CSS/JavaScript** - Front-end for the web interface
