@@ -14,6 +14,38 @@ This project demonstrates a simple web interface built with Flask to control a s
 2. **Metro Mini**: The Metro Mini receives commands via serial and controls the servo accordingly.
 3. **Real-Time Feedback**: Using Socket.IO, the front-end is updated in real-time, showing the current state of the servo.
 
+   
+RPI RUNNING SERVER 
+  │
+  │ USB Cable
+  │
+  ▼
+Adafruit Metro Mini
+  ┌──────────────────────────┐
+  │   ┌─────────────┐         │
+  │   │ PWM Pin 9   │─────────┼──> Signal to Servo Motor
+  │   └─────────────┘         │
+  │                           │
+  │   ┌─────────────┐         │
+  │   │    GND      │─────────┼──> Ground to Servo Motor
+  │   └─────────────┘         │
+  │                           │
+  │   ┌─────────────┐         │
+  │   │   5V (USB)  │─────────┼──> Power (from USB)
+  │   └─────────────┘         │
+  └──────────────────────────┘
+
+Servo Motor
+  ┌──────────────────────────┐
+  │  │                       │
+  │  │ Signal (from Metro Mini) ─────> Control the Servo
+  │  │                       │
+  │  │ Power (from external 5V supply) ─> Power for Servo
+  │  │                       │
+  │  │ Ground (common with Metro Mini) ─> Connect to GND
+  └──────────────────────────┘
+
+
 ### Tech Stack
 - **Flask** - Python web framework
 - **Socket.IO** - Real-time communication between the server and the client
