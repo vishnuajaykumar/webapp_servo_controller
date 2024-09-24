@@ -1,0 +1,54 @@
+
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8"/>
+        <title>SERVO CONTROL</title>
+        <script src="static/socket.io.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var socket = io();
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+        </script>
+        <script src="static/client.js"></script>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #001;
+                color: #fff;
+            }
+
+            h1 {
+                font-size: 36px;
+                margin-bottom: 100px;
+            }
+
+            button {
+                font-size: 24px;
+                padding: 20px 40px;
+                margin: 10px;
+                background-color: #3498db; 
+                color: #2ecc71;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #2980b9; 
+                color: #27ae60;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>SERVO CONTROL - Press button below</h1>
+        <button onclick="servoON()">Servo ON</button>
+        <button onclick="servoOFF()">Servo OFF</button>
+    </body>
+</html>
