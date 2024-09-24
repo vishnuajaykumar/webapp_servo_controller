@@ -44,7 +44,7 @@ Servo Motor
   │  │                       │
   │  │ Ground (common with Metro Mini) ─> Connect to GND
   └──────────────────────────┘
-
+```bash
 
 ### Tech Stack
 - **Flask** - Python web framework
