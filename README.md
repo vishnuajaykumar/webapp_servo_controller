@@ -1,4 +1,4 @@
-# Servo Control with Flask and Metro Mini
+# Servo Control with Flask and Micro Controller
 
 This project demonstrates a simple web interface built with Flask to control a servo motor connected to an Adafruit Metro Mini (or similar microcontroller) via a serial connection. The interface allows you to remotely toggle the servo on and off, and also provides visual feedback on the webpage based on the servo's state.
 
