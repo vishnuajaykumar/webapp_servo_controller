@@ -14,7 +14,7 @@ This project demonstrates a simple web interface built with Flask to control a s
 2. **Metro Mini**: The Metro Mini receives commands via serial and controls the servo accordingly.
 3. **Real-Time Feedback**: Using Socket.IO, the front-end is updated in real-time, showing the current state of the servo.
 
-   
+```bash   
 RPI RUNNING SERVER 
   │
   │ USB Cable
