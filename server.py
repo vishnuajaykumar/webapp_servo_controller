@@ -10,45 +10,45 @@ import time
 from threading import Thread
 
 # Arduino communication
-ser = serial.Serial('/dev/ttyUSB0', 9600)  # Set up a serial connection with Arduino
+ser = serial.Serial('/dev/ttyUSB0', 9600)  
 def read_from_port(ser):
     while True:
-        reading = ser.readline().decode().strip()  # Read data from Arduino
-        print(reading)  # Print the received data to the console
-        socketio.emit('server-msg', reading)  # Emit the received data to the client
+        reading = ser.readline().decode().strip()  
+        print(reading)  
+        socketio.emit('server-msg', reading)  
 
-thread = Thread(target=read_from_port, args=[ser])  # Create a thread for reading data from Arduino
+thread = Thread(target=read_from_port, args=[ser]) 
 thread.start()  # Start the thread
 
 # Flask Webserver
-app = Flask(__name__)  # Create a Flask web application
-app.config['SECRET_KEY'] = 'secret!'  # Set a secret key for security purposes
-socketio = SocketIO(app)  # Create a SocketIO object associated with the Flask app
+app = Flask(__name__)  
+app.config['SECRET_KEY'] = 'secret!'  
+socketio = SocketIO(app)  
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # Render the HTML template
+    return render_template('index.html')  
 
 @socketio.on('connect')
 def test_connect():
-    print('Client connected')  # Print a message when a client connects
-    emit('my response', {'data': 'Connected'})  # Send a custom event and data to the client 
+    print('Client connected')  
+    emit('my response', {'data': 'Connected'})  
 
 @socketio.on('disconnect')
 def test_disconnect():
-    print('Client disconnected')  # Print a message when a client disconnects
+    print('Client disconnected')  
 
 # Handle the LED messages
 @socketio.on('servoON')
 def servo_on():
-    print("Servo to 90 degree!")  # Print a message when the "servoON" event is received
-    ser.write(b'H')  # Send a command to Arduino 
+    print("Servo to 90 degree!")  
+    ser.write(b'H') 
 
 @socketio.on('servoOFF')
 def servo_off():
-    print("Servo to noraml state")  # Print a message when the "servoOFF" event is received
-    ser.write(b'L')  # Send a command to Arduino 
+    print("Servo to noraml state")  
+    ser.write(b'L')  
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True)  # Run the Flask application on the local machine
-    socketio.run(app)  # Run the SocketIO server
+    app.run(host='0.0.0.0', threaded=True)  
+    socketio.run(app)  # 
