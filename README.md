@@ -84,7 +84,7 @@ Push Button
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/servo-flask-control.git
+    git clone https://github.com/yourusername/webapp_servo_controller.git
     cd servo-flask-control
     ```
 
